@@ -10,6 +10,6 @@ services:
       - database
   database:
     container_name: mongo
-    image: mongo
+    image: nonoroazoro/rpi-mongo
     ports:
       - "27017:27017"
