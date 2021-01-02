@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const helmet = require("helmet");
+const compression = require("compression");
 const cors = require("cors");
 const { MONGODB_URI, PORT } = require("./utils/config");
 
@@ -24,7 +26,8 @@ app.use("/api/transactions", transactionsRouter);
 app.use("/api/months", monthsRouter);
 app.use("/api/debts", debtsRouter);
 app.use("/api/statistics", statsRouter);
-
+app.use(helmet);
+app.use(compression);
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB"))
