@@ -1,0 +1,15 @@
+version: "3"
+services:
+  app:
+    container_name: budget-tracker
+    restart: always
+    build: . # build from the docker file from '.'
+    ports:
+      - "3001:3001"
+    links:
+      - database
+  database:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"

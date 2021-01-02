@@ -17,6 +17,9 @@ const statsRouter = require("./controllers/statistics.controller");
 const app = express();
 
 app.use(express.json());
+app.use(helmet());
+app.use(compression());
+
 app.use(morgan("dev"));
 app.use(cors("*"));
 app.use("/api/users", usersRouter);
@@ -26,8 +29,7 @@ app.use("/api/transactions", transactionsRouter);
 app.use("/api/months", monthsRouter);
 app.use("/api/debts", debtsRouter);
 app.use("/api/statistics", statsRouter);
-app.use(helmet);
-app.use(compression);
+
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB"))
