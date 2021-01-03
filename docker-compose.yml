@@ -7,8 +7,8 @@ services:
     ports:
       - "3001:3001"
     links:
-      - database
-  database:
+      - mongo
+  mongo:
     container_name: mongo
     image: nonoroazoro/rpi-mongo
     ports:
