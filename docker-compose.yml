@@ -8,15 +8,15 @@ services:
       - "3001:3001"
     links:
       - mongo
-    networks:
-      - webappnetwork
   mongo:
     container_name: mongo
     image: nonoroazoro/rpi-mongo
     ports:
-      - "27016:27017"
-    networks:
-      - webappnetwork
-networks:
-  webappnetwork:
-    driver: bridge
+      - "27016:27016"
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+
+volumes:
+  mongodb:
+  mongodb_config:
