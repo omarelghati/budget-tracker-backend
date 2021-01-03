@@ -6,11 +6,11 @@ services:
     build: . # build from the docker file from '.'
     ports:
       - "3001:3001"
-    links:
-      - mongo
+    depends_on:
+      - "mongo"
   mongo:
     container_name: mongo
-    image: nonoroazoro/rpi-mongo
+    image: mongo
     ports:
       - "27016:27016"
     volumes:
