@@ -1,11 +1,13 @@
-FROM arm32v7/node
-# Create app directory
+FROM node:10
+
 WORKDIR /usr/src/app
-# Install app dependencies
+
 COPY package*.json ./
+
 RUN npm install
-# Copy app source code
+
 COPY . .
-#Expose port and start application
+
 EXPOSE 3001
-CMD [ "npm", "start" ]
+
+CMD ["npm", "start"]

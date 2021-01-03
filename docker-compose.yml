@@ -1,22 +1,15 @@
 version: "3"
 services:
   app:
-    container_name: budget-tracker
+    container_name: docker-node-mongo
     restart: always
-    build: . # build from the docker file from '.'
+    build: .
     ports:
       - "3001:3001"
-    depends_on:
-      - "mongo"
+    external_links:
+      - mongo
   mongo:
     container_name: mongo
-    image: mangoraft/mongodb-arm
+    image: larsla/mongo-armv7l
     ports:
-      - "27016:27016"
-    volumes:
-      - mongodb:/data/db
-      - mongodb_config:/data/configdb
-
-volumes:
-  mongodb:
-  mongodb_config:
+      - "27017:27017"

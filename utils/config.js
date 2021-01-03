@@ -17,7 +17,7 @@ for (var dev in ifaces) {
 }
 
 const PORT = process.env.PORT || 3001;
-const MONGODB_URI = `mongodb://mongo:27016/budget-tracker`;
+const MONGODB_URI = `mongodb://mongo:27017/budget-tracker`;
 const JWT_SECRET = "Qzp752RSBNxSK8fYNA1c";
 const SALT_ROUNDS = 10;
 
