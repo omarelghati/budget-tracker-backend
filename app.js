@@ -30,13 +30,22 @@ app.use("/api/months", monthsRouter);
 app.use("/api/debts", debtsRouter);
 app.use("/api/statistics", statsRouter);
 
-mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((error) =>
-    console.error("Error connecting to MongoDB:", error.message)
-  );
-
+function connectWithRetry() {
+  mongoose
+    .connect(MONGODB_URI, { useNewUrlParser: true })
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((error) => {
+      if (err) {
+        console.error(
+          "Failed to connect to mongo on startup - retrying in 1 sec",
+          err
+        );
+        setTimeout(connectWithRetry, 1000);
+      }
+      console.error("Error connecting to MongoDB:", error.message);
+    });
+}
+connectWithRetry();
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 module.exports = app;
