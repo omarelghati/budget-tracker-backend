@@ -1,4 +1,4 @@
-FROM balenalib/raspberry-pi-alpine-node:latest
+FROM arm32v7/node
 # Create app directory
 WORKDIR /usr/src/app
 # Install app dependencies
