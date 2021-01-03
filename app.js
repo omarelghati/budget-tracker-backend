@@ -35,14 +35,11 @@ function connectWithRetry() {
     .connect(MONGODB_URI, { useNewUrlParser: true })
     .then(() => console.log("Connected to MongoDB"))
     .catch((error) => {
-      if (err) {
-        console.error(
-          "Failed to connect to mongo on startup - retrying in 1 sec",
-          err
-        );
-        setTimeout(connectWithRetry, 1000);
-      }
-      console.error("Error connecting to MongoDB:", error.message);
+      console.error(
+        "Failed to connect to mongo on startup - retrying in 1 sec",
+        error.message
+      );
+      setTimeout(connectWithRetry, 1000);
     });
 }
 connectWithRetry();

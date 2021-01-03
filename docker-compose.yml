@@ -14,7 +14,7 @@ services:
     container_name: mongo
     image: nonoroazoro/rpi-mongo
     ports:
-      - "27017:27017"
+      - "27016:27017"
     networks:
       - webappnetwork
 networks:
